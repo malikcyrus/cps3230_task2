@@ -1,0 +1,18 @@
+digraph _logic_alertProperty {
+rankdir=LR;
+node [shape = circle]; createAlerts verifiedAlertLayout alertsPage createAlerts;
+node [shape = octagon]; badAlertNumber badAlertLayout badIconName;
+node [shape = point]; _s_s;
+_s_s -> createAlerts;
+verifiedAlertLayout -> alertsPage [ label = "(1) userViewedAlerts\\\\; System . out . println ( \" User viewed Alerts \" ) ; "];
+alertsPage -> alertsPage [ label = "(1) getNoOfAlerts\\noOfAlerts <= 5 \\; System . out . println ( \" Number of Alerts on Page:  \" + noOfAlerts ) ; "];
+alertsPage -> alertsPage [ label = "(2) alertsDeleted\\\\alertsUploaded = 0 ; System . out . println ( \" Alerts Deleted, alerts =  \" + alertsUploaded ) ; "];
+alertsPage -> alertsPage [ label = "(3) verifyIcon\\verifiedIcon == true \\; System . out . println ( \" Icon name verified \" ) ; "];
+alertsPage -> createAlerts [ label = "(4) alertCreated\\\\alertsUploaded ++ ; System . out . println ( \" User created Alert, alerts_uploaded =  \" + alertsUploaded ) ; "];
+alertsPage -> badAlertNumber [ label = "(5) getNoOfAlerts\\noOfAlerts > 5 \\; System . out . println ( \" Invalid Number of Alerts on Page!, Number of Alerts on Page:  \" + noOfAlerts ) ; "];
+alertsPage -> badIconName [ label = "(6) verifyIcon\\verifiedIcon == false \\; System . out . println ( \" Bad Icon name detected! \" ) ; "];
+createAlerts -> createAlerts [ label = "(1) alertCreated\\alertsUploaded <= 5 \\alertsUploaded ++ ; System . out . println ( \" User created Alert, alerts_uploaded =  \" + alertsUploaded ) ; "];
+createAlerts -> createAlerts [ label = "(2) alertsDeleted\\\\alertsUploaded = 0 ; System . out . println ( \" Alerts Deleted, alerts_uploaded =  \" + alertsUploaded ) ; "];
+createAlerts -> verifiedAlertLayout [ label = "(3) verifyAlertsLayout\\verified == true \\; System . out . println ( \" Verified Alert Layout! \" ) ; "];
+createAlerts -> badAlertLayout [ label = "(4) verifyAlertsLayout\\verified == false \\; System . out . println ( \" Failed to verify Alerts! \" ) ; "];
+}

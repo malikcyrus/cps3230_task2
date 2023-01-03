@@ -1,0 +1,1 @@
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>loginPage

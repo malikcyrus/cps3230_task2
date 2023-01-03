@@ -1,0 +1,16 @@
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>loginPage
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>loginPage
+User created alert, loginStatus: off
+[marketAlertUMProperty]MOVED ON METHODCALL: void main.Runner.alertCreated() TO STATE::> createAlertsLoggedOff
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>createAlertsLoggedOff
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>createAlertsLoggedOff
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>createAlertsLoggedOff
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>createAlertsLoggedOff
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>createAlertsLoggedOff
+User Logged In
+[marketAlertUMProperty]MOVED ON METHODCALL: void main.Runner.userValidLogin() TO STATE::> alertsPage
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>alertsPage
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>alertsPage
+[marketAlertUMProperty]AUTOMATON::> marketAlertUMProperty() STATE::>alertsPage
+User logged out!
+[marketAlertUMProperty]MOVED ON METHODCALL: void main.Runner.userLoggedOut() TO STATE::> loginPage

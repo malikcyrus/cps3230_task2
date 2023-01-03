@@ -1,0 +1,5 @@
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+Verified Alert Layout!
+[alertProperty]MOVED ON METHODCALL: boolean marketAlertUM.MarketAlertList.verifyAlertsLayout() TO STATE::> verifiedAlertLayout

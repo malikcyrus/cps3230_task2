@@ -1,0 +1,25 @@
+digraph _logic_marketAlertUMProperty {
+rankdir=LR;
+node [shape = circle]; loginPage alertsPage createAlerts deleteAlerts createAlertsLoggedOff deleteAlertsLoggedOff loginPage;
+node [shape = octagon]; badRequest;
+node [shape = point]; _s_s;
+_s_s -> loginPage;
+deleteAlerts -> loginPage [ label = "(1) userLoggedOut\\\\; System . out . println ( \" User logged out \" ) ; "];
+deleteAlerts -> alertsPage [ label = "(2) userViewedAlerts\\\\; System . out . pritnln ( \" User viewed Alerts \" ) ; "];
+deleteAlerts -> createAlerts [ label = "(3) alertCreated\\\\; System . out . println ( \" User created Alert \" ) ; "];
+alertsPage -> loginPage [ label = "(1) userLoggedOut\\\\; System . out . println ( \" User logged out! \" ) ; "];
+alertsPage -> createAlerts [ label = "(2) alertCreated\\\\; System . out . println ( \" User Created alerts! \" ) ; "];
+alertsPage -> badRequest [ label = "(3) invalidPost\\status == false \\; System . out . println ( \" Invalid Post Requst! \" ) ; "];
+alertsPage -> badRequest [ label = "(4) invalidDelete\\status == false \\; System . out . println ( \" Invalid Delete Requst! \" ) ; "];
+loginPage -> alertsPage [ label = "(1) userValidLogin\\\\; System . out . println ( \" User Logged in! \" ) ; "];
+loginPage -> badRequest [ label = "(2) invalidPost\\status == false \\; System . out . println ( \" Invalid Post Requst! \" ) ; "];
+loginPage -> badRequest [ label = "(3) invalidDelete\\status == false \\; System . out . println ( \" Invalid Delete Requst! \" ) ; "];
+loginPage -> createAlertsLoggedOff [ label = "(4) alertCreated\\\\; System . out . println ( \" User created alert, loginStatus: off \" ) ; "];
+loginPage -> deleteAlertsLoggedOff [ label = "(5) alertsDeleted\\\\; System . out . println ( \" User deleted alerts, loginStatus: off \" ) ; "];
+createAlertsLoggedOff -> alertsPage [ label = "(1) userValidLogin\\\\; System . out . println ( \" User Logged In \" ) ; "];
+deleteAlertsLoggedOff -> alertsPage [ label = "(1) userValidLogin\\\\; System . out . println ( \" User logged In \" ) ; "];
+createAlerts -> loginPage [ label = "(1) userLoggedOut\\\\; System . out . println ( \" User logged out \" ) ; "];
+createAlerts -> createAlerts [ label = "(2) alertCreated\\\\; System . out . println ( \" User Created alert \" ) ; "];
+createAlerts -> alertsPage [ label = "(3) userViewedAlerts\\\\; System . out . println ( \" User viewed alerts \" ) ; "];
+createAlerts -> deleteAlerts [ label = "(4) alertsDeleted\\\\; System . out . println ( \" User deleted alerts \" ) ; "];
+}

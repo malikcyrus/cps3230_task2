@@ -1,0 +1,51 @@
+IMPORTS { 
+	import marketAlertUM.MarketAlertList;
+}
+
+GLOBAL {
+	VARIABLES {
+		int alertsUploaded = 0;
+	}
+	
+	EVENTS{
+		alertCreated() = {*.alertCreated()}
+		alertsDeleted() = {*.alertsDeleted()}
+		userValidLogin() = {*.userValidLogin()}
+		userViewedAlerts() = {*.userViewedAlerts()}
+		getNoOfAlerts(int noOfAlerts) = {*.getNumberOfAlerts() uponReturning(noOfAlerts)}
+		verifyAlertsLayout(boolean verified) = {*.verifyAlertsLayout() uponReturning(verified)}
+		verifyIcon(boolean verifiedIcon) = {*.verifyIcon() uponReturning(verifiedIcon)}
+	}
+	
+	PROPERTY alertProperty{
+		STATES{
+			BAD{
+				badAlertNumber
+				badAlertLayout
+				badIconName
+			}
+			NORMAL{
+				createAlerts
+				verifiedAlertLayout
+				alertsPage
+			}
+			STARTING{
+				createAlerts
+			}
+		}
+		
+		TRANSITIONS{
+			createAlerts -> createAlerts [alertCreated\alertsUploaded <= 5\alertsUploaded++;System.out.println("User created Alert, alerts_uploaded = "+ alertsUploaded);]
+			createAlerts -> createAlerts [alertsDeleted\\alertsUploaded=0; System.out.println("Alerts Deleted, alerts_uploaded = "+ alertsUploaded);]
+			createAlerts -> verifiedAlertLayout [verifyAlertsLayout\verified == true\;System.out.println("Verified Alert Layout!");]
+			createAlerts -> badAlertLayout [verifyAlertsLayout\verified == false\;System.out.println("Failed to verify Alerts!");]
+			verifiedAlertLayout -> alertsPage [userViewedAlerts\\; System.out.println("User viewed Alerts");]
+			alertsPage -> alertsPage [getNoOfAlerts\noOfAlerts <= 5\;System.out.println("Number of Alerts on Page: " + noOfAlerts);]
+			alertsPage -> alertsPage [alertsDeleted\\alertsUploaded=0;System.out.println("Alerts Deleted, alerts = " + alertsUploaded);]
+		    alertsPage -> alertsPage [verifyIcon\ verifiedIcon == true\; System.out.println("Icon name verified");]
+		    alertsPage -> createAlerts [alertCreated\\alertsUploaded++;System.out.println("User created Alert, alerts_uploaded = "+ alertsUploaded);]
+		    alertsPage -> badAlertNumber [getNoOfAlerts\noOfAlerts > 5\;System.out.println("Invalid Number of Alerts on Page!, Number of Alerts on Page: " + noOfAlerts);]
+		    alertsPage -> badIconName [verifyIcon\ verifiedIcon == false\; System.out.println("Bad Icon name detected!");]
+		}
+	}
+}

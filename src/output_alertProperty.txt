@@ -1,0 +1,15 @@
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+[alertProperty]AUTOMATON::> alertProperty() STATE::>createAlerts
+Verified Alert Layout!
+[alertProperty]MOVED ON METHODCALL: boolean marketAlertUM.MarketAlertList.verifyAlertsLayout() TO STATE::> verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+[alertProperty]AUTOMATON::> alertProperty() STATE::>verifiedAlertLayout
+User viewed Alerts
+[alertProperty]MOVED ON METHODCALL: void main.Runner.userViewedAlerts() TO STATE::> alertsPage
+[alertProperty]AUTOMATON::> alertProperty() STATE::>alertsPage

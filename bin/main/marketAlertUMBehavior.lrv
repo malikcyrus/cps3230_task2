@@ -1,0 +1,61 @@
+%%Making sure there are not more than 3 bad logins in 5 seconds.
+IMPORTS { 
+	import main.PostService;
+}
+GLOBAL {
+	VARIABLES {
+		
+	}
+	
+	EVENTS{
+		alertCreated() = {*.alertCreated()}
+		alertsDeleted() = {*.alertsDeleted()}
+		userValidLogin() = {*.userValidLogin()}
+		userLoggedOut() = {*.userLoggedOut()}
+		userViewedAlerts() = {*.userViewedAlerts()}
+		invalidPost(boolean status) = {*.postAlerts() uponReturning(status)}
+		invalidDelete(boolean status) = {*.deleteAllAlerts() uponReturning(status)}
+	}
+	
+	PROPERTY marketAlertUMProperty{
+		STATES{
+			BAD{
+				badRequest
+			}
+			NORMAL{
+				loginPage
+				alertsPage
+				createAlerts
+				deleteAlerts
+				createAlertsLoggedOff
+				deleteAlertsLoggedOff
+			}
+			STARTING{
+				loginPage
+			}
+		}
+		
+		TRANSITIONS{
+			loginPage -> alertsPage [userValidLogin\\;System.out.println("User Logged in!");]
+			loginPage -> badRequest [invalidPost\status == false\;System.out.println("Invalid Post Requst!");]
+			loginPage -> badRequest [invalidDelete\status == false\;System.out.println("Invalid Delete Requst!");]
+			loginPage -> createAlertsLoggedOff [alertCreated\\; System.out.println("User created alert, loginStatus: off");]
+			loginPage -> deleteAlertsLoggedOff [alertsDeleted\\; System.out.println("User deleted alerts, loginStatus: off");]
+			createAlertsLoggedOff -> alertsPage [userValidLogin\\;System.out.println("User Logged In");]
+			deleteAlertsLoggedOff -> alertsPage [userValidLogin\\; System.out.println("User logged In");]
+			%% login page -> loginPage (invalid login)
+			alertsPage -> loginPage [userLoggedOut\\; System.out.println("User logged out!");]
+			alertsPage -> createAlerts [alertCreated\\; System.out.println("User Created alerts!");]
+			alertsPage -> badRequest [invalidPost\status == false\;System.out.println("Invalid Post Requst!");]
+			alertsPage -> badRequest [invalidDelete\status == false\;System.out.println("Invalid Delete Requst!");]
+			createAlerts -> loginPage [userLoggedOut\\; System.out.println("User logged out");]
+			createAlerts -> createAlerts [alertCreated\\;System.out.println("User Created alert");]
+			createAlerts -> alertsPage [userViewedAlerts\\;System.out.println("User viewed alerts");]
+			createAlerts -> deleteAlerts [alertsDeleted\\;System.out.println("User deleted alerts");]
+			deleteAlerts -> loginPage [userLoggedOut\\; System.out.println("User logged out");]
+			deleteAlerts -> alertsPage [userViewedAlerts\\; System.out.pritnln("User viewed Alerts");]
+			deleteAlerts -> createAlerts [alertCreated\\; System.out.println("User created Alert");]
+			
+		}
+	}
+}
